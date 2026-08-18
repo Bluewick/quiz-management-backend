@@ -94,8 +94,8 @@ const quizIdParamSchema = z.object({
 
 // Admin Quiz Management Endpoints
 router.post("/", authenticateUser, authorize("admin"), validate(createQuizSchema), asyncHandler(createQuiz));
-router.get("/", authenticateUser, authorize("admin"), validate(getQuizzesSchema), asyncHandler(getQuizzes));
-router.get("/:id", authenticateUser, authorize("admin"), validate(uuidParamSchema), asyncHandler(getQuizById));
+router.get("/", authenticateUser, authorize("admin", "student"), validate(getQuizzesSchema), asyncHandler(getQuizzes));
+router.get("/:id", authenticateUser, authorize("admin", "student"), validate(uuidParamSchema), asyncHandler(getQuizById));
 router.put("/:id", authenticateUser, authorize("admin"), validate(updateQuizSchema), asyncHandler(updateQuiz));
 router.patch("/:id/status", authenticateUser, authorize("admin"), validate(updateStatusSchema), asyncHandler(updateQuizStatus));
 router.delete("/:id", authenticateUser, authorize("admin"), validate(uuidParamSchema), asyncHandler(deleteQuiz));

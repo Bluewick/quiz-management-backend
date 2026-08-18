@@ -5,6 +5,9 @@ import authRoutes from "./routes/auth.routes.js";
 import { errorHandler } from "./middleware/error.middleware.js";
 import quizRoutes from "./routes/quiz.routes.js";
 import questionRoutes from "./routes/question.routes.js";
+import studentQuizRoutes from "./routes/studentQuiz.routes.js";
+import studentAttemptRoutes from "./routes/studentAttempt.routes.js";
+
 
 const app = express();
 
@@ -15,6 +18,9 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/quizzes", quizRoutes);
 app.use("/api/questions", questionRoutes);
+
+app.use("/api/student/quizzes", studentQuizRoutes);
+app.use("/api/student/attempts", studentAttemptRoutes);
 
 
 app.use(errorHandler);
