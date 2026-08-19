@@ -7,7 +7,8 @@ import quizRoutes from "./routes/quiz.routes.js";
 import questionRoutes from "./routes/question.routes.js";
 import studentQuizRoutes from "./routes/studentQuiz.routes.js";
 import studentAttemptRoutes from "./routes/studentAttempt.routes.js";
-
+import adminStudentRoutes from "./routes/userManagement.routes.js";
+import profileRoutes from "./routes/profile.routes.js";
 
 const app = express();
 
@@ -22,6 +23,10 @@ app.use("/api/questions", questionRoutes);
 app.use("/api/student/quizzes", studentQuizRoutes);
 app.use("/api/student/attempts", studentAttemptRoutes);
 
+app.use("/api/admin/students", adminStudentRoutes);
+
+
+app.use("/api/profile", profileRoutes);
 
 app.use(errorHandler);
 
