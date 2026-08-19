@@ -12,8 +12,34 @@ import profileRoutes from "./routes/profile.routes.js";
 
 const app = express();
 
+
+const allowedOrigins = [
+  'https://quiz-management-frontend-one.vercel.app/',
+  /^https:\/\/.*\.vercel\.app$/,
+  'http://localhost:5253', 
+  'http://localhost:3000'
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Required if you use cookies or Authorization headers
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
+
+// Middleware
+// app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
